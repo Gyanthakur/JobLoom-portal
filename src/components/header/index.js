@@ -12,46 +12,55 @@ function Header({ user, profileInfo }) {
 
   const menuItems = [
     {
+      id: 1,
       label: "Home",
       path: "/",
       show: true,
     },
     {
+      id: 2,
       label: "Feed",
       path: "/feed",
       show: profileInfo,
     },
     {
+      id: 3,
       label: "Login",
       path: "/sign-in",
       show: !user,
     },
     {
+      id: 4,
       label: "Register",
       path: "/sign-up",
       show: !user,
     },
     {
+      id: 5,
       label: "Activity",
       path: "/activity",
       show: profileInfo?.role === "candidate",
     },
     {
+      id: 6,
       label: "Companies",
       path: "/companies",
       show: profileInfo?.role === "candidate",
     },
     {
+      id: 7,
       label: "Jobs",
       path: "/jobs",
       show: user,
     },
     {
+      id: 8,
       label: "Membership",
       path: "/membership",
       show: user,
     },
     {
+      id: 9,
       label: "Account",
       path: "/account",
       show: user,
@@ -76,6 +85,7 @@ function Header({ user, profileInfo }) {
               {menuItems.map((menuItem) =>
                 menuItem.show ? (
                   <Link
+                    key={menuItem.id}
                     href={menuItem.path}
                     className="flex w-full items-center py-2 text-lg font-semibold"
                   >
@@ -99,6 +109,7 @@ function Header({ user, profileInfo }) {
           {menuItems.map((menuItem) =>
             menuItem.show ? (
               <Link
+                key={menuItem.id}
                 href={menuItem.path}
                 onClick={() => sessionStorage.removeItem("filterParams")}
                 className="group inline-flex h-9 w-max items-center rounded-md  px-4 py-2 text-sm font-medium"

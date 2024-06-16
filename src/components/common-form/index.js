@@ -7,7 +7,6 @@ function CommonForm({
 	buttonText,
 	isBtnDisabled,
 	formControls,
-	isBtnDisabled,
 	btnType,
 	formData,
 	setFormData,
