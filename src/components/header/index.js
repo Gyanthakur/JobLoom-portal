@@ -70,7 +70,7 @@ function Header({ user, profileInfo }) {
   return (
     <div>
       <header className="flex h-16 w-full shrink-0 items-center">
-        <Sheet>
+        <Sheet className="">
           <SheetTrigger asChild>
             <Button className="lg:hidden">
               <AlignJustify className="h-6 w-6" />
@@ -78,15 +78,16 @@ function Header({ user, profileInfo }) {
             </Button>
           </SheetTrigger>
           <SheetContent side="left">
-            <Link className="mr-6 hidden lg:flex" href={"#"}>
+            <Link className="mr-6 hidden lg:flex" href={"/"}>
               <h3>JOBSCO</h3>
             </Link>
-            <div className="grid gap-2 py-6">
+            <Link href={"/"} className="grid gap-2 py-6 text-black">
               {menuItems.map((menuItem) =>
                 menuItem.show ? (
                   <Link
                     key={menuItem.id}
                     href={menuItem.path}
+                    
                     className="flex w-full items-center py-2 text-lg font-semibold"
                   >
                     {menuItem.label}
@@ -99,7 +100,7 @@ function Header({ user, profileInfo }) {
                 onClick={() => setTheme(theme === "light" ? "dark" : "light")}
               /> */}
               <UserButton afterSignOutUrl="/" />
-            </div>
+            </Link>
           </SheetContent>
         </Sheet>
         <Link className="hidden font-bold text-3xl lg:flex mr-6" href={"/"}>

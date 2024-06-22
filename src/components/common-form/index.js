@@ -11,6 +11,7 @@ function CommonForm({
   formData,
   setFormData,
   handleFileChange,
+  handleTextChange,
 }) {
   function renderInputByComponentType(getCurrentControl) {
     let content = null;
@@ -55,6 +56,23 @@ function CommonForm({
         );
 
         break;
+
+        case "textarea" :
+          content = (
+            <Label
+            for={getCurrentControl.name}
+            className="flex flex-row bg-gray-100 dark:bg-black items-center text-center px-3 py-3 mx-auto mt-6 border-2 border-dashed rounded-lg"
+             >
+              <h2>{getCurrentControl.label}</h2>
+              <textarea className="ml-5 p-5 w-full"
+              onChange={handleTextChange}
+              id={getCurrentControl.name}
+              type="textarea"
+              />
+             </Label>
+          );
+          
+          break;
 
       default:
         content = (
