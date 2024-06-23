@@ -315,3 +315,37 @@ export const initialHackathonFormData = {
 
 
 }
+
+export const othersOnboardFormControls = [
+	{
+		label : "Name",
+		name : "Name",
+		placeholder : "Enter your name",
+		componentType : "input"
+	},
+	{
+		label : "Title",
+		name : "Title",
+		placeholder : "Enter the title",
+		componentType : "input"
+	},
+	{
+		label : "Description",
+		name : "Description",
+		placeholder : "Enter the description",
+		componentType : "textarea"
+	},
+	{
+		label : "Link",
+		name : "Link",
+		placeholder : "Enter the link",
+		componentType : "input"
+	}
+]
+
+export const initialOthersFormData ={
+	name : '',
+	title : '',
+	description : '',
+	link : ''
+}

@@ -8,7 +8,9 @@ import {
     haclkathonOnboardFormControls, 
     initialCandidateFormData, 
     initialHackathonFormData, 
+    initialOthersFormData, 
     initialRecruiterFormData, 
+    othersOnboardFormControls, 
     recruiterOnboardFormControls
  } from "@/utils";
 
@@ -23,6 +25,8 @@ function OnBoard() {
     const [recruiterFormData, setRecruiterFormData] = useState(initialRecruiterFormData);
 
     const [hackathonFormData, sethackathonFormData] = useState(initialHackathonFormData);
+
+    const [othersFormData, setOthersFormData] = useState(initialOthersFormData);
 
     function handleTabChange(value) {
         setCurrentTab(value);
@@ -41,6 +45,7 @@ function OnBoard() {
 							<TabsTrigger value="candidate">Candidate</TabsTrigger>
 							<TabsTrigger value="recruiter">recruiter</TabsTrigger>
 							<TabsTrigger value="hackathon">Hackathon</TabsTrigger>
+							<TabsTrigger value="others">Others</TabsTrigger>
 						</TabsList>
 					</div>
 				</div>
@@ -68,6 +73,17 @@ function OnBoard() {
                             formData={hackathonFormData}
                             setFormData={sethackathonFormData}
                             />
+                    </TabsContent>
+
+                    <TabsContent value="others">
+                        <CommonForm
+                            formControls={othersOnboardFormControls}
+                            buttonText={'Onboard as others'}
+                            formData={othersFormData}
+                            setFormData={setOthersFormData}
+                        
+                        />
+
                     </TabsContent>
 			</Tabs>
 		</div>
