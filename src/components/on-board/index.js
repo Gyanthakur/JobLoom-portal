@@ -44,6 +44,13 @@ function OnBoard() {
         );
       }
 
+      function handleCandidateFormValid() {
+        return Object.keys(candidateFormData).every(
+          (key) => candidateFormData[key].trim() !== ""
+        );
+      }
+    
+
 	return (
 		<div className="bg-white">
 			<Tabs value={currentTab} onValueChange={handleTabChange}>
@@ -68,6 +75,7 @@ function OnBoard() {
 						buttonText={"Onboard as candidate"}
 						formData={candidateFormData}
 						setFormData={setCandidateFormData}
+                        isBtnDisabled={!handleCandidateFormValid()}
 					/>
 				</TabsContent>
 				<TabsContent value="recruiter">
