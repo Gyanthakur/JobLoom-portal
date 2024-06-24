@@ -3,34 +3,46 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useState } from "react";
 import CommonForm from "../common-form";
-import { 
-    candidateOnboardFormControls, 
-    haclkathonOnboardFormControls, 
-    initialCandidateFormData, 
-    initialHackathonFormData, 
-    initialOthersFormData, 
-    initialRecruiterFormData, 
-    othersOnboardFormControls, 
-    recruiterOnboardFormControls
- } from "@/utils";
+import {
+	candidateOnboardFormControls,
+	haclkathonOnboardFormControls,
+	initialCandidateFormData,
+	initialHackathonFormData,
+	initialOthersFormData,
+	initialRecruiterFormData,
+	othersOnboardFormControls,
+	recruiterOnboardFormControls,
+} from "@/utils";
 
- 
 function OnBoard() {
+	const [currentTab, setCurrentTab] = useState("candidate");
 
+	const [candidateFormData, setCandidateFormData] = useState(
+		initialCandidateFormData
+	);
 
-    const [currentTab, setCurrentTab] = useState("candidate");
+	const [recruiterFormData, setRecruiterFormData] = useState(
+		initialRecruiterFormData
+	);
 
-    const [candidateFormData, setCandidateFormData] = useState(initialCandidateFormData);
+	const [hackathonFormData, sethackathonFormData] = useState(
+		initialHackathonFormData
+	);
 
-    const [recruiterFormData, setRecruiterFormData] = useState(initialRecruiterFormData);
+	const [othersFormData, setOthersFormData] = useState(initialOthersFormData);
+    console.log(recruiterFormData, setRecruiterFormData);
 
-    const [hackathonFormData, sethackathonFormData] = useState(initialHackathonFormData);
-
-    const [othersFormData, setOthersFormData] = useState(initialOthersFormData);
-
-    function handleTabChange(value) {
+	function handleTabChange(value) {
         setCurrentTab(value);
-    }
+	}
+    function handleRecuiterFormValid() {
+        return (
+            recruiterFormData &&
+            recruiterFormData.name.trim() !== ''&&
+            recruiterFormData.companyName.trim() !=='' &&
+            recruiterFormData.companyRole.trim() !== ''
+        );
+      }
 
 	return (
 		<div className="bg-white">
@@ -50,41 +62,40 @@ function OnBoard() {
 					</div>
 				</div>
 
-                <TabsContent value="candidate">
-                    <CommonForm
-                        formControls={candidateOnboardFormControls}
-                        buttonText={'Onboard as candidate'}
-                        formData={candidateFormData}
-                        setFormData={setCandidateFormData}
-                        />
-                </TabsContent>
-                <TabsContent value="recruiter">
-                    <CommonForm
-                        formControls={recruiterOnboardFormControls}
-                        buttonText={'Onboard as recruiter'}
+				<TabsContent value="candidate">
+					<CommonForm
+						formControls={candidateOnboardFormControls}
+						buttonText={"Onboard as candidate"}
+						formData={candidateFormData}
+						setFormData={setCandidateFormData}
+					/>
+				</TabsContent>
+				<TabsContent value="recruiter">
+					<CommonForm
+						formControls={recruiterOnboardFormControls}
+                        buttonText={"Onboard as recruiter"}
                         formData={recruiterFormData}
                         setFormData={setRecruiterFormData}
-                        />
-                    </TabsContent>
-                    <TabsContent value="hackathon">
-                        <CommonForm
-                            formControls={haclkathonOnboardFormControls}
-                            buttonText={'Onboard as hackathon'}
-                            formData={hackathonFormData}
-                            setFormData={sethackathonFormData}
-                            />
-                    </TabsContent>
+                        isBtnDisabled={!handleRecuiterFormValid()}
+					/>
+				</TabsContent>
+				<TabsContent value="hackathon">
+					<CommonForm
+						formControls={haclkathonOnboardFormControls}
+						buttonText={"Onboard as hackathon"}
+						formData={hackathonFormData}
+						setFormData={sethackathonFormData}
+					/>
+				</TabsContent>
 
-                    <TabsContent value="others">
-                        <CommonForm
-                            formControls={othersOnboardFormControls}
-                            buttonText={'Onboard as others'}
-                            formData={othersFormData}
-                            setFormData={setOthersFormData}
-                        
-                        />
-
-                    </TabsContent>
+				<TabsContent value="others">
+					<CommonForm
+						formControls={othersOnboardFormControls}
+						buttonText={"Onboard as others"}
+						formData={othersFormData}
+						setFormData={setOthersFormData}
+					/>
+				</TabsContent>
 			</Tabs>
 		</div>
 	);
