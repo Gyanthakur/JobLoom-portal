@@ -1,12 +1,28 @@
+// const { default: mongoose } = require("mongoose");
+
+// const connectToDb = async () => {
+// 	const connectionURL = "mongodb+srv://gyan:jobportal@cluster0.exqx0pw.mongodb.net/";
+
+// 	(await mongoose.connect(connectionURL))
+// 		.then(() => console.log("Database connected successfully!"))
+// 		.catch((error) => console.log("error"));
+// };
+
+
+// export default connectToDb;
+
+
+
+
 const { default: mongoose } = require("mongoose");
 
-const connectToDb = async () => {
-	const connectionURL = "mongodb+srv://gyan:jobportal@cluster0.exqx0pw.mongodb.net/";
+const connectToDB = async () => {
+  const connectionURL = process.env.MONGODB_URL;
 
-	(await mongoose.connect(connectionURL))
-		.then(() => console.log("Database connected successfully!"))
-		.catch((error) => console.log("error"));
+  mongoose
+    .connect(connectionURL)
+    .then(() => console.log("jon board database connection is successfull"))
+    .catch((error) => console.log(error));
 };
 
-
-export default connectToDb;
+export default connectToDB;

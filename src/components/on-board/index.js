@@ -13,6 +13,8 @@ import {
 	othersOnboardFormControls,
 	recruiterOnboardFormControls,
 } from "@/utils";
+import { createProfile } from "@/actions";
+import { useUser } from "@clerk/nextjs";
 
 function OnBoard() {
 	const [currentTab, setCurrentTab] = useState("candidate");
@@ -30,6 +32,11 @@ function OnBoard() {
 	);
 
 	const [othersFormData, setOthersFormData] = useState(initialOthersFormData);
+
+	const currentAuthUser = useUser()
+	const {user} = currentAuthUser;
+
+	console.log(currentAuthUser);
     console.log(recruiterFormData, setRecruiterFormData);
 
 	function handleTabChange(value) {
@@ -44,6 +51,16 @@ function OnBoard() {
         );
       }
 
+	  async function createProfileAction(){
+		const data = {
+			recruiterInfo: recruiterFormData,
+			role : 'recruiter',
+			isPremiumUser : false,
+			userId : user?.id,
+			email : user?.primaryEmailAddress?.emailAddress,
+		}
+		await createProfileAction(data,"/Onboard")
+	  }
       function handleCandidateFormValid() {
         return Object.keys(candidateFormData).every(
           (key) => candidateFormData[key].trim() !== ""
@@ -85,6 +102,7 @@ function OnBoard() {
                         formData={recruiterFormData}
                         setFormData={setRecruiterFormData}
                         isBtnDisabled={!handleRecuiterFormValid()}
+						action={createProfile}
 					/>
 				</TabsContent>
 				<TabsContent value="hackathon">
