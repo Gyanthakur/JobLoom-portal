@@ -74,7 +74,7 @@ function OnBoard() {
 				<div className="w-full">
 					<div className="flex items-baseline justify-between border-b pb-6 pt-24">
 						<h1 className="text-4xl font-bold tracking-tight text-gray-900">
-							Welcome to onboarding
+							Welcome to onboarding 
 						</h1>
 
 						<TabsList>
