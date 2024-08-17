@@ -230,7 +230,7 @@ function Header({ user, profileInfo }) {
                     handleLinkClick();
                   }}
                 />
-                <Button variant="ghost" onClick={() => { signOut(); handleLinkClick(); }}>
+                <Button className="bg-blue-400 hover:bg-red-600 hover:text-white" variant="ghost" onClick={() => { signOut(); handleLinkClick(); }}>
                   Sign Out
                 </Button>
               </div>
